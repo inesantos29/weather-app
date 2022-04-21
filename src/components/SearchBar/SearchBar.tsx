@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { Form, Input, Message } from 'semantic-ui-react'
 
 type Props = {
-  callBackFromParent:any
+  callBackFromParent: (cityArr: string) => void
   error: string
 }
 

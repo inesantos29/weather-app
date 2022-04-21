@@ -1,12 +1,13 @@
+import { ChangeEvent } from 'react'
 import { FavouritesWrapper, Title, ButtonContainer, StyledButton } from './style'
 
 type Props = {
   savedCities: Array<string>
-  callBackFromParent: (_: string) => void
+  callBackFromParent: (city: string) => void
 }
 
 const Favourites = ({savedCities, callBackFromParent}: Props) => {
-  const getWeather = (event) => {
+  const getWeather = (event: ChangeEvent<HTMLInputElement>) => {
     callBackFromParent(event.target.value);
   }
 

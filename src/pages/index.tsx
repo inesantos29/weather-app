@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import dynamic  from 'next/dynamic'
 import WeatherEngine from '../components/WeatherEngine/WeatherEngine'
 
-const BgImage = dynamic(() => import('../components/BackgroundImage/BGImage'), {
+const BgImage = dynamic(() => import('../components/BGImage/BGImage'), {
   ssr: false
 })
 

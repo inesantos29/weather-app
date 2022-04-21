@@ -1,10 +1,33 @@
 
 import { Button } from 'semantic-ui-react'
 
+type WeatherData = {
+  city: string
+  weather: Array<{
+    id: number
+    main: string
+  }>
+  country: string
+  temp: number
+  main: {
+    temp_max: number
+    temp_min: number
+    humidity: number
+  }
+  wind: {
+    speed: number
+  }
+  wind_direction: number
+  pressure: number
+  sunrise: number
+  visibility: number
+  sunset: number
+}
+
 type Props = {
-  weatherData: any
-  savedCities: any
-  callBackFromParent: (_) => void
+  weatherData: WeatherData
+  savedCities: Array<string>
+  callBackFromParent: (cityArr: Array<string>) => void
 }
 
 const WeatherCard = ({weatherData, savedCities, callBackFromParent}: Props) => {
@@ -26,6 +49,7 @@ const WeatherCard = ({weatherData, savedCities, callBackFromParent}: Props) => {
     callBackFromParent(existingCities)
   }
 
+
   const {
     city,
     weather,
@@ -33,7 +57,6 @@ const WeatherCard = ({weatherData, savedCities, callBackFromParent}: Props) => {
     temp,
     main,
     wind,
-    humidity,
     wind_direction,
     pressure,
     sunrise,
@@ -107,7 +130,7 @@ const WeatherCard = ({weatherData, savedCities, callBackFromParent}: Props) => {
             </div>
             <div>
               <p>
-                {humidity} %
+                {main.humidity} %
               </p>
             </div>
           </div>

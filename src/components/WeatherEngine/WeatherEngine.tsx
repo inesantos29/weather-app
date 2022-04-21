@@ -9,7 +9,6 @@ import API_KEY from '../../config'
 
 
 const WeatherEngine = () => {
-  const [loading, setLoading] = useState(false)
   const [weatherData, setWeatherData] = useState({
     weather: null,
     city: null,
@@ -25,14 +24,12 @@ const WeatherEngine = () => {
     sunset: null,
   })
   const [searchDone, setSearchDone] = useState<boolean>(false)
-  const [savedCities, setSaveCities] = useState([])
+  const [savedCities, setSaveCities] = useState<Array<string>>([])
   const [hasSavedCities, setHasSavedCities] = useState<boolean>(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState<string>("")
 
 
   async function getWeather(q: string) {
-    setLoading(true)
-
     const apiRoot = 'https://api.openweathermap.org/data/2.5/weather?q='
 
     axios.get(`${apiRoot}${q}&appid=${API_KEY}`)
@@ -56,10 +53,9 @@ const WeatherEngine = () => {
         setErrorMessage("")
       })
       .catch(error => setErrorMessage(error.message))
-      setLoading(false)
   }
 
-  const updateSavedCities = (cityArr) => {
+  const updateSavedCities = (cityArr: Array<string>) => {
     const hasCities = cityArr.length > 0
     setSaveCities(cityArr)
     setHasSavedCities(hasCities)
