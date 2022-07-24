@@ -1,5 +1,6 @@
-
 import { Button } from 'semantic-ui-react'
+
+import WeatherCardDetail from '../WeatherCardDetail/WeatherCardDetail'
 
 type WeatherData = {
   city: string
@@ -88,110 +89,31 @@ const WeatherCard = ({weatherData, savedCities, callBackFromParent}: Props) => {
   return (
 
     <div className="WeatherBoards">
-        <div className="WeatherLeft-board">
-          <h1 className="WeatherCard-degrees">{celcius}°</h1>
-          <div className="WeatherCard-icon-container">
-            <i className={`wi wi-owm-${weather[0].id} WeatherCard-icon`} />
-            <p>{weather[0].main} as of {new Date().toLocaleTimeString()}</p>
-          </div>
-          <h2 className="WeatherCard-city">
-            {city}, {country}
-          </h2>
-          {existingCities.includes(city) ? deleteBtn : saveBtn}
+      <div className="WeatherLeft-board">
+        <h1 className="WeatherCard-degrees">{celcius}°</h1>
+        <div className="WeatherCard-icon-container">
+          <i className={`wi wi-owm-${weather[0].id} WeatherCard-icon`} />
+          <p>{weather[0].main} as of {new Date().toLocaleTimeString()}</p>
         </div>
-
-        <div className="WeatherRight-board">
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>High/Low</h4>
-            </div>
-            <div>
-              <p>
-                {Math.floor(main.temp_max - 273.15)}/
-                {Math.floor(main.temp_min - 273.15)}
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Wind</h4>
-            </div>
-            <div>
-              <p>
-                {Math.floor((wind.speed * 18) / 5)} km/hr
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Humidity</h4>
-            </div>
-            <div>
-              <p>
-                {main.humidity} %
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Wind Direction</h4>
-            </div>
-            <div>
-              <p>
-                {wind_direction}
-                <sup>o</sup> deg
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Pressure</h4>
-            </div>
-            <div>
-              <p>
-                {pressure} hPa
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Sunrise</h4>
-            </div>
-            <div>
-              <p>
-                {new Date(sunrise * 1000).toLocaleTimeString()}
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Visibility</h4>
-            </div>
-            <div>
-              <p>
-                {visibility / 1000} Km
-              </p>
-            </div>
-          </div>
-
-          <div className="WeatherCard-detail">
-            <div>
-              <h4>Sunset</h4>
-            </div>
-            <div>
-              <p>
-                {new Date(sunset * 1000).toLocaleTimeString()}
-              </p>
-            </div>
-          </div>
-        </div>
+        <h2 className="WeatherCard-city">
+          {city}, {country}
+        </h2>
+        {existingCities.includes(city) ? deleteBtn : saveBtn}
       </div>
+
+        <WeatherCardDetail
+          temp_max={main.temp_max}
+          temp_min={main.temp_min}
+          wind_speed={wind.speed}
+          humidity={main.humidity}
+          wind_direction={wind_direction}
+          pressure={pressure}
+          sunrise={sunrise}
+          visibility={visibility}
+          sunset={sunset}
+        />
+
+    </div>
   )
 }
 

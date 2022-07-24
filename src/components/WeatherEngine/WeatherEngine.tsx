@@ -62,6 +62,8 @@ const WeatherEngine = () => {
   }
 
   useEffect(() =>  {
+
+    console.log('Hello page')
     let existingCities = JSON.parse(localStorage.getItem("cityList") || "[]")
 
     if (existingCities.length !== 0) {
@@ -69,6 +71,7 @@ const WeatherEngine = () => {
       setSaveCities(existingCities)
     }
   },[])
+
 
   return (
     <WeatherEngineWrapper>
